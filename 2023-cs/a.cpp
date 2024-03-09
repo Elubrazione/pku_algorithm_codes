@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// 算法笔记进制转换部分
 int utils(int a) {
 	int sum = 0;
 	do {

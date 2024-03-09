@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// 暴力模拟
 int main() {
   int n, m;
   cin >> n >> m;

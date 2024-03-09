@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// 递归回溯，需要继续加强
 void generateParenthesis(int lcnt, int rcnt, string res, vector<string> &ans) {
   if (lcnt == 0 && rcnt == 0) {
     ans.push_back(res);

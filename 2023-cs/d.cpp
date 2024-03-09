@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// 基础的动态规划问题，类似leetcode上那道二叉搜索树的数量
+// 这道题的重点是递推公式
 int main() {
   int n, cnt = 0;
   cin >> n;
