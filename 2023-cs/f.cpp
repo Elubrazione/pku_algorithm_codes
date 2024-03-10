@@ -1,9 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// 有负圈看起来需要用bellman-ford做最短路径
-int main() {
+struct Node {
+  int v, w;
+  Node(int _v, int _w): v(_v), w(_w) {}
+};
+int n, m;
+vector<bool> inq;
+vector<int> d, innum;
+const int MAX = 0x3fffffff;
+vector<vector<Node>> G;
 
+bool spfa(int s) {
+  d.resize(n + 1), fill(d.begin(), d.end(), MAX);
+  inq.resize(n + 1), fill(inq.begin(), inq.end(), false);
+  innum.resize(n + 1), fill(innum.begin(), innum.end(), 0);
+  queue<int> q;
+  q.push(s);
+  inq[s] = true;
+  innum[s]++;
+  d[s] = 0;
+  while (!q.empty()) {
+    int u = q.front();
+    q.pop();
+    inq[u] = false;
+    for (auto p: G[u]) {
+      if (d[u] + p.w < d[p.v])
+        d[p.v] = d[u] + p.w;
+      if (!inq[p.v]) {
+        q.push(p.v);
+        inq[p.v] = true;
+        innum[p.v]++;
+        if (innum[p.v] >= n)
+          return false;
+      }
+    }
+  }
+  return true;
+}
+
+int main() {
+  int s, t;
+  int x, y, z;
+  cin >> t;
+  while (t--) {
+    cin >> n >> m >> s;
+    G.resize(n + 1), fill(G.begin(), G.end(), vector<Node>());
+    for (int i = 0; i < m; i++) {
+      cin >> x >> y >> z;
+      G[x].push_back(Node(y, z));
+    }
+    bool res = spfa(s);
+    if (!res) cout << "Error\n";
+    else {
+      for (int i = 1; i <= n; i++) {
+        d[i] == MAX? cout << "null": cout << d[i];
+        if (i != n) cout << " ";
+      }
+      cout << endl;
+    }
+  }
   return 0;
 }
 
