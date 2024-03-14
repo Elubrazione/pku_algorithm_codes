@@ -3,6 +3,7 @@
 #include <string>
 using namespace std;
 
+// 考虑一整行读
 int main() {
   string str;
   while (getline(cin, str)) {

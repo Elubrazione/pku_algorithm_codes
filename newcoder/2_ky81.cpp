@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// 要考虑最高位的进位
 vector<string> s;
 int main() {
   string a, ans;
