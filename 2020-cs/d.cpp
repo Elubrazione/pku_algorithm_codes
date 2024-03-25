@@ -12,12 +12,35 @@
  * 输出
  * 依次输出卖出的钱数、香蕉蛋糕数量、巧克力蛋糕数量，每个数占一行。
 */
+
+// 不要想太多，直接双重循环暴力枚举香蕉和巧克力的数量即可。
+// 用sum和ansi以及ansj来记录最大值
+
 #include <bits/stdc++.h>
 using namespace std;
+int mf, xj, t, hy, kkf;
 
+bool calculate(int i, int j) {
+  if (i > 100 || j > 100) return false;
+  if (i * 250 + j * 200 > mf) return false;
+  if (i * 75 + j * 150 > t) return false;
+  if (i * 100 + j * 150 > hy)  return false;
+  return true;
+}
 int main() {
-  int a, b, c, d, e;
-  cin >> a >> b >> c >> d >> e;
-  
+  int sum = 0, ansi = 0, ansj = 0;
+  cin >> mf >> xj >> t >> hy >> kkf;
+  for (int i = 0; i < xj / 2; i++) { // 香蕉
+    for (int j = 0; j < kkf / 75; j++) {  // 可可粉
+      if (calculate(i, j)) {
+        int cur = i * 400 + j * 450;
+        if (cur > sum) {
+          sum = cur;
+          ansi = i, ansj = j;
+        }
+      }
+    }
+  }
+  printf("%d\n%d\n%d", sum, ansi, ansj);
   return 0;
 }
