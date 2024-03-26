@@ -13,13 +13,13 @@ using namespace std;
 int n, m, ans = 0;
 vector<int> nums;
 void backtracking(int num, int s, int target) {
-  if (num >= m && !target) {
+  if (num == m && !target) {
     if (s > ans)  ans = s;
     return;
   }
   for (int i = 1; i <= n; i++) {
-    if (target < 0) break;
-    
+    if (target - i < 0 || num >= m) break;
+    backtracking(num + 1, s + nums[i], target - i);
   }
 }
 
@@ -27,6 +27,7 @@ int main() {
   cin >> n >> m;
   nums.resize(n + 1, 0);
   for (int i = 1; i <= n; i++)  cin >> nums[i];
-
+  backtracking(0, 0, n);
+  cout << ans;
   return 0;
 }
